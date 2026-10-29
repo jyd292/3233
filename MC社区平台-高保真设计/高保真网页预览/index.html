@@ -1,0 +1,234 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MC HUB · 高保真原型 V1.0 · 41 页</title>
+<style>
+:root{--ink:#0C130D;--paper:#F4F5EE;--line:#D7DEC9;--grass:#6EA832;--grassl:#93C94A;--mut:#6D7A66}
+*{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);
+font-family:"Microsoft YaHei","Noto Sans CJK SC",sans-serif}
+header{background:var(--ink);color:#F4F8EC;padding:64px 0 56px}
+.wrap{max-width:1320px;margin:0 auto;padding:0 40px}
+.kick{font:11px/1 Consolas,monospace;letter-spacing:2px;color:var(--grassl)}
+h1{margin:16px 0 10px;font-size:44px;letter-spacing:1px}
+.sub{color:#A9B9A2;font-size:15px;max-width:760px}
+.stats{display:flex;gap:48px;margin-top:32px}
+.stats b{display:block;font:800 30px/1.2 Consolas,monospace;color:#F4F8EC}
+.stats span{font-size:11px;color:#7C8B77}
+.filters{display:flex;gap:8px;flex-wrap:wrap;padding:28px 0 10px}
+.filters button{font:12px "Microsoft YaHei",sans-serif;padding:8px 14px;border:1px solid var(--line);background:#fff;cursor:pointer}
+.filters button.on{background:var(--ink);color:var(--grassl);border-color:var(--ink)}
+.grp{padding:26px 0 6px}
+.gh{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:18px}
+.gh h2{margin:0;font-size:21px} .gh span{font:11px Consolas,monospace;color:var(--mut)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.card{background:#fff;border:1px solid var(--line);text-decoration:none;color:var(--ink);padding:0 0 16px;transition:.16s}
+.card:hover{border-color:var(--grass);transform:translateY(-2px)}
+.thumb{height:132px;overflow:hidden;border-bottom:1px solid var(--line);background:#E9ECDF}
+.thumb img{width:100%;display:block}
+.meta{display:flex;gap:8px;align-items:center;padding:12px 14px 0}
+.code{font:10px Consolas,monospace;color:var(--grass);border:1px solid #DCE8C8;background:#EAF3DB;padding:2px 6px}
+.lv{font:10px Consolas,monospace;color:var(--mut);border:1px solid var(--line);padding:2px 6px}
+h3{margin:10px 14px 4px;font-size:16px} p{margin:0 14px;font-size:12px;color:var(--mut);min-height:34px}
+.go{display:block;margin:10px 14px 0;font-size:11px;color:var(--grass)}
+footer{margin-top:48px;padding:26px 0;border-top:1px solid var(--line);font:11px Consolas,monospace;color:var(--mut)}
+</style></head><body>
+<header><div class="wrap">
+  <div class="kick">MC HUB / HIGH-FIDELITY PROTOTYPE V1.0</div>
+  <h1>高保真原型 · 41 页</h1>
+  <p class="sub">信息架构 V1.0 的视觉落地：1920 画布 / 1200 安全宽 / 12 列栅格 / 方块视觉语言。点击任意画板进入可交互页面，页面内导航、卡片、面包屑均可点击。</p>
+  <div class="stats"><div><b>41</b><span>页面画板</b></span></div><div><b>5</b><span>一级频道</b></span></div>
+  <div><b>1,141</b><span>交互连线</b></span></div><div><b>1200</b><span>安全宽度</b></span></div></div>
+</div></header>
+<div class="wrap">
+  <div class="filters"><button class="on" data-f="all">全部 41</button>
+  <button data-f="首页">首页</button><button data-f="认识 MC">认识 MC</button><button data-f="下载中心">下载中心</button><button data-f="社区交流">社区交流</button><button data-f="攻略视频">攻略视频</button><button data-f="关于与支持">关于与支持</button><button data-f="全局工具">全局工具</button>
+  </div>
+  <div class="grp" data-g="首页"><div class="gh"><h2>首页</h2><span>1 页</span></div><div class="grid">
+<a class="card" href="pages/P00.html" data-g="首页">
+  <div class="thumb"><img loading="lazy" src="thumbs/P00.png" alt="首页"></div>
+  <div class="meta"><span class="code">P00</span><span class="lv">L1</span></div>
+  <h3>首页</h3><p>品牌区 / 六入口 / 热门资源 / 社区动态 / 新手路径</p><span class="go">打开画板 →</span></a>
+</div></div>
+<div class="grp" data-g="认识 MC"><div class="gh"><h2>认识 MC</h2><span>8 页</span></div><div class="grid">
+<a class="card" href="pages/P01.html" data-g="认识 MC">
+  <div class="thumb"><img loading="lazy" src="thumbs/P01.png" alt="认识 MC"></div>
+  <div class="meta"><span class="code">P01</span><span class="lv">L2</span></div>
+  <h3>认识 MC</h3><p>游戏简介 / 版本与玩法 / 新手教程 / 常见问题</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P0101.html" data-g="认识 MC">
+  <div class="thumb"><img loading="lazy" src="thumbs/P0101.png" alt="游戏简介"></div>
+  <div class="meta"><span class="code">P0101</span><span class="lv">L3</span></div>
+  <h3>游戏简介</h3><p>是什么 / 四种玩法 / 为什么值得玩</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P0102.html" data-g="认识 MC">
+  <div class="thumb"><img loading="lazy" src="thumbs/P0102.png" alt="版本与玩法"></div>
+  <div class="meta"><span class="code">P0102</span><span class="lv">L3</span></div>
+  <h3>版本与玩法</h3><p>Java / 基岩 / 快照版本对照</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P0103.html" data-g="认识 MC">
+  <div class="thumb"><img loading="lazy" src="thumbs/P0103.png" alt="新手入门教程"></div>
+  <div class="meta"><span class="code">P0103</span><span class="lv">L3</span></div>
+  <h3>新手入门教程</h3><p>12 篇教程 / 三档难度</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P0104.html" data-g="认识 MC">
+  <div class="thumb"><img loading="lazy" src="thumbs/P0104.png" alt="常见问题"></div>
+  <div class="meta"><span class="code">P0104</span><span class="lv">L3</span></div>
+  <h3>常见问题</h3><p>186 个问题 / 解决率 92%</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P010201.html" data-g="认识 MC">
+  <div class="thumb"><img loading="lazy" src="thumbs/P010201.png" alt="版本详情"></div>
+  <div class="meta"><span class="code">P010201</span><span class="lv">L4</span></div>
+  <h3>版本详情</h3><p>1.20.1 / 特性 / 安装</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P010301.html" data-g="认识 MC">
+  <div class="thumb"><img loading="lazy" src="thumbs/P010301.png" alt="教程详情"></div>
+  <div class="meta"><span class="code">P010301</span><span class="lv">L4</span></div>
+  <h3>教程详情</h3><p>第一夜生存清单</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P010401.html" data-g="认识 MC">
+  <div class="thumb"><img loading="lazy" src="thumbs/P010401.png" alt="问题详情"></div>
+  <div class="meta"><span class="code">P010401</span><span class="lv">L4</span></div>
+  <h3>问题详情</h3><p>Java 版本不匹配</p><span class="go">打开画板 →</span></a>
+</div></div>
+<div class="grp" data-g="下载中心"><div class="gh"><h2>下载中心</h2><span>11 页</span></div><div class="grid">
+<a class="card" href="pages/P02.html" data-g="下载中心">
+  <div class="thumb"><img loading="lazy" src="thumbs/P02.png" alt="下载中心"></div>
+  <div class="meta"><span class="code">P02</span><span class="lv">L2</span></div>
+  <h3>下载中心</h3><p>启动器 / 整合包 / MOD / 资源包 / 联机工具</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P0201.html" data-g="下载中心">
+  <div class="thumb"><img loading="lazy" src="thumbs/P0201.png" alt="启动器下载"></div>
+  <div class="meta"><span class="code">P0201</span><span class="lv">L3</span></div>
+  <h3>启动器下载</h3><p>官方 / HMCL / PCL2 横向对比</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P0202.html" data-g="下载中心">
+  <div class="thumb"><img loading="lazy" src="thumbs/P0202.png" alt="整合包获取"></div>
+  <div class="meta"><span class="code">P0202</span><span class="lv">L3</span></div>
+  <h3>整合包获取</h3><p>分类 / 热度 / 版本筛选</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P0203.html" data-g="下载中心">
+  <div class="thumb"><img loading="lazy" src="thumbs/P0203.png" alt="MOD 下载"></div>
+  <div class="meta"><span class="code">P0203</span><span class="lv">L3</span></div>
+  <h3>MOD 下载</h3><p>1,286 个 MOD / 前置依赖提示</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P0204.html" data-g="下载中心">
+  <div class="thumb"><img loading="lazy" src="thumbs/P0204.png" alt="资源包与光影"></div>
+  <div class="meta"><span class="code">P0204</span><span class="lv">L3</span></div>
+  <h3>资源包与光影</h3><p>资源包 / 光影分区</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P0205.html" data-g="下载中心">
+  <div class="thumb"><img loading="lazy" src="thumbs/P0205.png" alt="联机与语音工具"></div>
+  <div class="meta"><span class="code">P0205</span><span class="lv">L3</span></div>
+  <h3>联机与语音工具</h3><p>联机工具 / 语音工具 / 人数对比</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P020101.html" data-g="下载中心">
+  <div class="thumb"><img loading="lazy" src="thumbs/P020101.png" alt="启动器详情"></div>
+  <div class="meta"><span class="code">P020101</span><span class="lv">L4</span></div>
+  <h3>启动器详情</h3><p>HMCL / 配置 / 下载</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P020201.html" data-g="下载中心">
+  <div class="thumb"><img loading="lazy" src="thumbs/P020201.png" alt="整合包详情"></div>
+  <div class="meta"><span class="code">P020201</span><span class="lv">L4</span></div>
+  <h3>整合包详情</h3><p>Better MC / MOD 清单</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P020301.html" data-g="下载中心">
+  <div class="thumb"><img loading="lazy" src="thumbs/P020301.png" alt="MOD 详情"></div>
+  <div class="meta"><span class="code">P020301</span><span class="lv">L4</span></div>
+  <h3>MOD 详情</h3><p>Create / 前置依赖</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P020401.html" data-g="下载中心">
+  <div class="thumb"><img loading="lazy" src="thumbs/P020401.png" alt="资源详情"></div>
+  <div class="meta"><span class="code">P020401</span><span class="lv">L4</span></div>
+  <h3>资源详情</h3><p>Complementary / 配置</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P020501.html" data-g="下载中心">
+  <div class="thumb"><img loading="lazy" src="thumbs/P020501.png" alt="工具详情"></div>
+  <div class="meta"><span class="code">P020501</span><span class="lv">L4</span></div>
+  <h3>工具详情</h3><p>KOOK / 频道语音</p><span class="go">打开画板 →</span></a>
+</div></div>
+<div class="grp" data-g="社区交流"><div class="gh"><h2>社区交流</h2><span>8 页</span></div><div class="grid">
+<a class="card" href="pages/P03.html" data-g="社区交流">
+  <div class="thumb"><img loading="lazy" src="thumbs/P03.png" alt="社区交流"></div>
+  <div class="meta"><span class="code">P03</span><span class="lv">L2</span></div>
+  <h3>社区交流</h3><p>论坛 / 服务器 / 个人中心</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P0301.html" data-g="社区交流">
+  <div class="thumb"><img loading="lazy" src="thumbs/P0301.png" alt="论坛板块"></div>
+  <div class="meta"><span class="code">P0301</span><span class="lv">L3</span></div>
+  <h3>论坛板块</h3><p>五个分区 / 发帖入口</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P0302.html" data-g="社区交流">
+  <div class="thumb"><img loading="lazy" src="thumbs/P0302.png" alt="服务器与联机"></div>
+  <div class="meta"><span class="code">P0302</span><span class="lv">L3</span></div>
+  <h3>服务器与联机</h3><p>86 个在线服 / 版本筛选</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P0303.html" data-g="社区交流">
+  <div class="thumb"><img loading="lazy" src="thumbs/P0303.png" alt="个人中心"></div>
+  <div class="meta"><span class="code">P0303</span><span class="lv">L3</span></div>
+  <h3>个人中心</h3><p>资料 / 我的帖子 / 收藏</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P030101.html" data-g="社区交流">
+  <div class="thumb"><img loading="lazy" src="thumbs/P030101.png" alt="板块帖子列表"></div>
+  <div class="meta"><span class="code">P030101</span><span class="lv">L4</span></div>
+  <h3>板块帖子列表</h3><p>综合讨论区 / 置顶主题</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P030201.html" data-g="社区交流">
+  <div class="thumb"><img loading="lazy" src="thumbs/P030201.png" alt="服务器详情"></div>
+  <div class="meta"><span class="code">P030201</span><span class="lv">L4</span></div>
+  <h3>服务器详情</h3><p>橡木镇 / 加入方式</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P030301.html" data-g="社区交流">
+  <div class="thumb"><img loading="lazy" src="thumbs/P030301.png" alt="我的内容"></div>
+  <div class="meta"><span class="code">P030301</span><span class="lv">L4</span></div>
+  <h3>我的内容</h3><p>发帖 / 收藏 / 消息</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P03010101.html" data-g="社区交流">
+  <div class="thumb"><img loading="lazy" src="thumbs/P03010101.png" alt="帖子详情"></div>
+  <div class="meta"><span class="code">P03010101</span><span class="lv">L5</span></div>
+  <h3>帖子详情</h3><p>楼层 / 代码块 / 回复</p><span class="go">打开画板 →</span></a>
+</div></div>
+<div class="grp" data-g="攻略视频"><div class="gh"><h2>攻略视频</h2><span>5 页</span></div><div class="grid">
+<a class="card" href="pages/P04.html" data-g="攻略视频">
+  <div class="thumb"><img loading="lazy" src="thumbs/P04.png" alt="攻略视频"></div>
+  <div class="meta"><span class="code">P04</span><span class="lv">L2</span></div>
+  <h3>攻略视频</h3><p>视频攻略 / 图文攻略</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P0401.html" data-g="攻略视频">
+  <div class="thumb"><img loading="lazy" src="thumbs/P0401.png" alt="视频攻略"></div>
+  <div class="meta"><span class="code">P0401</span><span class="lv">L3</span></div>
+  <h3>视频攻略</h3><p>86 个合集 / 热度榜</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P0402.html" data-g="攻略视频">
+  <div class="thumb"><img loading="lazy" src="thumbs/P0402.png" alt="图文攻略"></div>
+  <div class="meta"><span class="code">P0402</span><span class="lv">L3</span></div>
+  <h3>图文攻略</h3><p>240 篇文章 / 分类列表</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P040101.html" data-g="攻略视频">
+  <div class="thumb"><img loading="lazy" src="thumbs/P040101.png" alt="视频播放页"></div>
+  <div class="meta"><span class="code">P040101</span><span class="lv">L4</span></div>
+  <h3>视频播放页</h3><p>播放器 / 分 P / 配套资源</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P040201.html" data-g="攻略视频">
+  <div class="thumb"><img loading="lazy" src="thumbs/P040201.png" alt="文章详情"></div>
+  <div class="meta"><span class="code">P040201</span><span class="lv">L4</span></div>
+  <h3>文章详情</h3><p>红石从零开始</p><span class="go">打开画板 →</span></a>
+</div></div>
+<div class="grp" data-g="关于与支持"><div class="gh"><h2>关于与支持</h2><span>5 页</span></div><div class="grid">
+<a class="card" href="pages/P05.html" data-g="关于与支持">
+  <div class="thumb"><img loading="lazy" src="thumbs/P05.png" alt="关于与支持"></div>
+  <div class="meta"><span class="code">P05</span><span class="lv">L2</span></div>
+  <h3>关于与支持</h3><p>关于 / 联系 / 更新日志 / 协议</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P0501.html" data-g="关于与支持">
+  <div class="thumb"><img loading="lazy" src="thumbs/P0501.png" alt="关于我们"></div>
+  <div class="meta"><span class="code">P0501</span><span class="lv">L3</span></div>
+  <h3>关于我们</h3><p>起点 / 三件事 / 团队</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P0502.html" data-g="关于与支持">
+  <div class="thumb"><img loading="lazy" src="thumbs/P0502.png" alt="联系与反馈"></div>
+  <div class="meta"><span class="code">P0502</span><span class="lv">L3</span></div>
+  <h3>联系与反馈</h3><p>反馈表单 / 联系方式</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P0503.html" data-g="关于与支持">
+  <div class="thumb"><img loading="lazy" src="thumbs/P0503.png" alt="更新日志"></div>
+  <div class="meta"><span class="code">P0503</span><span class="lv">L3</span></div>
+  <h3>更新日志</h3><p>24 条版本记录</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/P0504.html" data-g="关于与支持">
+  <div class="thumb"><img loading="lazy" src="thumbs/P0504.png" alt="用户协议与隐私"></div>
+  <div class="meta"><span class="code">P0504</span><span class="lv">L3</span></div>
+  <h3>用户协议与隐私</h3><p>5 章 / 隐私说明</p><span class="go">打开画板 →</span></a>
+</div></div>
+<div class="grp" data-g="全局工具"><div class="gh"><h2>全局工具</h2><span>3 页</span></div><div class="grid">
+<a class="card" href="pages/G01.html" data-g="全局工具">
+  <div class="thumb"><img loading="lazy" src="thumbs/G01.png" alt="登录 / 注册"></div>
+  <div class="meta"><span class="code">G01</span><span class="lv">G</span></div>
+  <h3>登录 / 注册</h3><p>登录 / 注册 / 找回密码</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/G02.html" data-g="全局工具">
+  <div class="thumb"><img loading="lazy" src="thumbs/G02.png" alt="搜索结果"></div>
+  <div class="meta"><span class="code">G02</span><span class="lv">G</span></div>
+  <h3>搜索结果</h3><p>五类对象分组结果</p><span class="go">打开画板 →</span></a>
+<a class="card" href="pages/G03.html" data-g="全局工具">
+  <div class="thumb"><img loading="lazy" src="thumbs/G03.png" alt="404 / 空状态"></div>
+  <div class="meta"><span class="code">G03</span><span class="lv">G</span></div>
+  <h3>404 / 空状态</h3><p>错误提示 / 搜索建议</p><span class="go">打开画板 →</span></a>
+</div></div>
+  <footer>MC HUB · 界面交互应用综合训练 · 高保真 V1.0 · 2024-06</footer>
+</div>
+<script>
+const btns=[...document.querySelectorAll('.filters button')];
+btns.forEach(b=>b.onclick=()=>{
+  btns.forEach(x=>x.classList.remove('on')); b.classList.add('on');
+  const f=b.dataset.f;
+  document.querySelectorAll('.grp').forEach(g=>{
+    g.style.display=(f==='all'||g.dataset.g===f)?'':'none';
+  });
+});
+</script></body></html>

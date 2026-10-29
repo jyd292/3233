@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MC 社区平台 · Web 低保真原型</title>
+<style>
+:root{--bg:#f3f4f6;--card:#fff;--line:#e2e4e8;--txt:#23262b;--mut:#7b818a;--acc:#6ea832;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font-family:"Microsoft YaHei",system-ui,sans-serif}
+header.top{position:sticky;top:0;z-index:9;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:18px 32px}
+h1{margin:0;font-size:20px;letter-spacing:.3px}
+.top p{margin:6px 0 0;font-size:13px;color:var(--mut)}
+.wrap{max-width:1560px;margin:0 auto;padding:28px 32px 80px;display:grid;grid-template-columns:repeat(auto-fill,minmax(460px,1fr));gap:24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 16px 14px;display:flex;flex-direction:column}
+.meta{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--mut)}
+.code{font-family:Consolas,monospace;background:#eef5e6;color:#4d7a22;border:1px solid #d7e7c5;border-radius:3px;padding:1px 6px}
+.lv{font-family:Consolas,monospace;border:1px solid var(--line);border-radius:3px;padding:1px 6px}
+.dim{margin-left:auto}
+h3{margin:10px 0 4px;font-size:16px}
+.card p{margin:0 0 12px;font-size:12.5px;color:var(--mut);min-height:32px}
+.card img{width:100%;border:1px solid var(--line);border-radius:6px;display:block;background:#fff}
+</style></head>
+<body>
+<header class="top">
+  <h1>MC 应用与社区交流平台 · Web 低保真原型</h1>
+  <p>依据《MC社区平台-信息架构图 V1.0》 · 画布 1920 · 安全宽 1200 · 12 列栅格 · 共 41 个页面模板 · L1–L5 与全局工具全覆盖</p>
+</header>
+<main class="wrap">
+<article class="card">
+      <div class="meta"><span class="code">P00</span><span class="lv">L1</span>
+      <span class="dim">1920×2820</span></div>
+      <h3>首页</h3>
+      <p>品牌区 / 六入口 / 热门资源轮播 / 社区动态 / 新手路径</p>
+      <a href="svg/P00_首页.svg" target="_blank"><img src="svg/P00_首页.svg" alt="首页" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P01</span><span class="lv">L2</span>
+      <span class="dim">1920×1374</span></div>
+      <h3>认识 MC</h3>
+      <p>从「这是什么」到「怎么开始」：简介、版本与玩法、新手教程、常见问题四条主线。</p>
+      <a href="svg/P01_认识 MC.svg" target="_blank"><img src="svg/P01_认识 MC.svg" alt="认识 MC" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P0101</span><span class="lv">L3</span>
+      <span class="dim">1920×2078</span></div>
+      <h3>游戏简介</h3>
+      <p>是什么 / 玩法概览 / 图集</p>
+      <a href="svg/P0101_游戏简介.svg" target="_blank"><img src="svg/P0101_游戏简介.svg" alt="游戏简介" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P0102</span><span class="lv">L3</span>
+      <span class="dim">1920×1438</span></div>
+      <h3>版本与玩法</h3>
+      <p>Java / 基岩 / 快照版本对照表</p>
+      <a href="svg/P0102_版本与玩法.svg" target="_blank"><img src="svg/P0102_版本与玩法.svg" alt="版本与玩法" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P010201</span><span class="lv">L4</span>
+      <span class="dim">1920×2196</span></div>
+      <h3>版本详情</h3>
+      <p>版本详情 · 正式版 · 发布于 2023-06-12 · 收录 MOD 2,860 个</p>
+      <a href="svg/P010201_版本详情.svg" target="_blank"><img src="svg/P010201_版本详情.svg" alt="版本详情" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P0103</span><span class="lv">L3</span>
+      <span class="dim">1920×1622</span></div>
+      <h3>新手入门教程</h3>
+      <p>从第一夜到第一次联机：按难度分级的图文教程目录。</p>
+      <a href="svg/P0103_新手入门教程.svg" target="_blank"><img src="svg/P0103_新手入门教程.svg" alt="新手入门教程" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P010301</span><span class="lv">L4</span>
+      <span class="dim">1920×2196</span></div>
+      <h3>教程详情</h3>
+      <p>教程详情 · 入门 · 约 30 分钟 · 适用于 1.20.1</p>
+      <a href="svg/P010301_教程详情.svg" target="_blank"><img src="svg/P010301_教程详情.svg" alt="教程详情" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P0104</span><span class="lv">L3</span>
+      <span class="dim">1920×1572</span></div>
+      <h3>常见问题</h3>
+      <p>分类 FAQ / 关键词检索 → 问题详情、联系与反馈</p>
+      <a href="svg/P0104_常见问题.svg" target="_blank"><img src="svg/P0104_常见问题.svg" alt="常见问题" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P010401</span><span class="lv">L4</span>
+      <span class="dim">1920×2196</span></div>
+      <h3>问题详情</h3>
+      <p>常见问题 · 启动与安装 · 浏览 12,860 · 解决率 86%</p>
+      <a href="svg/P010401_问题详情.svg" target="_blank"><img src="svg/P010401_问题详情.svg" alt="问题详情" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P02</span><span class="lv">L2</span>
+      <span class="dim">1920×1564</span></div>
+      <h3>下载中心</h3>
+      <p>核心转化页：启动器、整合包、MOD、资源包与光影、联机与语音工具。</p>
+      <a href="svg/P02_下载中心.svg" target="_blank"><img src="svg/P02_下载中心.svg" alt="下载中心" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P0201</span><span class="lv">L3</span>
+      <span class="dim">1920×1742</span></div>
+      <h3>启动器下载</h3>
+      <p>官方 / HMCL / PCL2 横向对比：支持平台、配置要求、下载入口。</p>
+      <a href="svg/P0201_启动器下载.svg" target="_blank"><img src="svg/P0201_启动器下载.svg" alt="启动器下载" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P020101</span><span class="lv">L4</span>
+      <span class="dim">1920×2318</span></div>
+      <h3>启动器详情</h3>
+      <p>启动器 · 开源免费 · 支持离线登录 · 更新于 2024-06-12</p>
+      <a href="svg/P020101_启动器详情.svg" target="_blank"><img src="svg/P020101_启动器详情.svg" alt="启动器详情" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P0202</span><span class="lv">L3</span>
+      <span class="dim">1920×1742</span></div>
+      <h3>整合包获取</h3>
+      <p>按分类、热度、版本筛选整合包；详情页给出 MOD 清单与安装步骤。</p>
+      <a href="svg/P0202_整合包获取.svg" target="_blank"><img src="svg/P0202_整合包获取.svg" alt="整合包获取" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P020201</span><span class="lv">L4</span>
+      <span class="dim">1920×2196</span></div>
+      <h3>整合包详情</h3>
+      <p>整合包 · 1.20.1 · 120+ MOD · 更新于 2024-06-12</p>
+      <a href="svg/P020201_整合包详情.svg" target="_blank"><img src="svg/P020201_整合包详情.svg" alt="整合包详情" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P0203</span><span class="lv">L3</span>
+      <span class="dim">1920×1742</span></div>
+      <h3>MOD 下载</h3>
+      <p>分类 / 版本筛选 / 前置提示 → MOD 详情</p>
+      <a href="svg/P0203_MOD 下载.svg" target="_blank"><img src="svg/P0203_MOD 下载.svg" alt="MOD 下载" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P020301</span><span class="lv">L4</span>
+      <span class="dim">1920×2196</span></div>
+      <h3>MOD 详情</h3>
+      <p>MOD · 1.20.1 · Forge · 前置：Flywheel · 更新于 2024-06-12</p>
+      <a href="svg/P020301_MOD 详情.svg" target="_blank"><img src="svg/P020301_MOD 详情.svg" alt="MOD 详情" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P0204</span><span class="lv">L3</span>
+      <span class="dim">1920×1808</span></div>
+      <h3>资源包与光影</h3>
+      <p>资源包 / 光影分区 → 资源详情</p>
+      <a href="svg/P0204_资源包与光影.svg" target="_blank"><img src="svg/P0204_资源包与光影.svg" alt="资源包与光影" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P020401</span><span class="lv">L4</span>
+      <span class="dim">1920×2196</span></div>
+      <h3>资源详情</h3>
+      <p>光影 · 需 Iris / OptiFine · 中配可跑 · 更新于 2024-06-12</p>
+      <a href="svg/P020401_资源详情.svg" target="_blank"><img src="svg/P020401_资源详情.svg" alt="资源详情" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P0205</span><span class="lv">L3</span>
+      <span class="dim">1920×2020</span></div>
+      <h3>联机与语音工具下载</h3>
+      <p>联机工具 / 语音工具分组 + 平台与人数对比</p>
+      <a href="svg/P0205_联机与语音工具下载.svg" target="_blank"><img src="svg/P0205_联机与语音工具下载.svg" alt="联机与语音工具下载" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P020501</span><span class="lv">L4</span>
+      <span class="dim">1920×2196</span></div>
+      <h3>工具详情</h3>
+      <p>语音工具 · 频道制 · 全平台 · 免费</p>
+      <a href="svg/P020501_工具详情.svg" target="_blank"><img src="svg/P020501_工具详情.svg" alt="工具详情" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P03</span><span class="lv">L2</span>
+      <span class="dim">1920×1374</span></div>
+      <h3>社区交流</h3>
+      <p>热门帖、公告、在线人数；论坛、服务器、个人中心三个入口。</p>
+      <a href="svg/P03_社区交流.svg" target="_blank"><img src="svg/P03_社区交流.svg" alt="社区交流" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P0301</span><span class="lv">L3</span>
+      <span class="dim">1920×1456</span></div>
+      <h3>论坛板块</h3>
+      <p>分区列表 / 最新主题 / 发帖入口</p>
+      <a href="svg/P0301_论坛板块.svg" target="_blank"><img src="svg/P0301_论坛板块.svg" alt="论坛板块" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P030101</span><span class="lv">L4</span>
+      <span class="dim">1920×1564</span></div>
+      <h3>板块帖子列表</h3>
+      <p>置顶 / 排序 / 发帖入口 → 帖子详情</p>
+      <a href="svg/P030101_板块帖子列表.svg" target="_blank"><img src="svg/P030101_板块帖子列表.svg" alt="板块帖子列表" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P03010101</span><span class="lv">L5</span>
+      <span class="dim">1920×1656</span></div>
+      <h3>帖子详情</h3>
+      <p>楼层 / 图文 / 点赞回复 → 个人中心、相关资源</p>
+      <a href="svg/P03010101_帖子详情.svg" target="_blank"><img src="svg/P03010101_帖子详情.svg" alt="帖子详情" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P0302</span><span class="lv">L3</span>
+      <span class="dim">1920×1578</span></div>
+      <h3>服务器与联机</h3>
+      <p>服务器列表 / 版本筛选 → 服务器详情</p>
+      <a href="svg/P0302_服务器与联机.svg" target="_blank"><img src="svg/P0302_服务器与联机.svg" alt="服务器与联机" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P030201</span><span class="lv">L4</span>
+      <span class="dim">1920×2196</span></div>
+      <h3>服务器详情</h3>
+      <p>服务器 · 1.20.1 · 原版生存 · 在线 86 / 200 · 延迟 32 ms</p>
+      <a href="svg/P030201_服务器详情.svg" target="_blank"><img src="svg/P030201_服务器详情.svg" alt="服务器详情" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P0303</span><span class="lv">L3</span>
+      <span class="dim">1920×1252</span></div>
+      <h3>个人中心</h3>
+      <p>资料 / 我的帖子 / 收藏入口</p>
+      <a href="svg/P0303_个人中心.svg" target="_blank"><img src="svg/P0303_个人中心.svg" alt="个人中心" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P030301</span><span class="lv">L4</span>
+      <span class="dim">1920×1342</span></div>
+      <h3>我的内容</h3>
+      <p>发帖 / 收藏 / 消息 / 设置 → 帖子详情、首页</p>
+      <a href="svg/P030301_我的内容.svg" target="_blank"><img src="svg/P030301_我的内容.svg" alt="我的内容" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P04</span><span class="lv">L2</span>
+      <span class="dim">1920×1184</span></div>
+      <h3>攻略视频</h3>
+      <p>视频与图文双入口：合集、UP 主、难度分区，看完即可跳转资源。</p>
+      <a href="svg/P04_攻略视频.svg" target="_blank"><img src="svg/P04_攻略视频.svg" alt="攻略视频" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P0401</span><span class="lv">L3</span>
+      <span class="dim">1920×1742</span></div>
+      <h3>视频攻略</h3>
+      <p>合集 / UP 主 / 难度分区：按顺序跟做，看完即可跳转资源。</p>
+      <a href="svg/P0401_视频攻略.svg" target="_blank"><img src="svg/P0401_视频攻略.svg" alt="视频攻略" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P040101</span><span class="lv">L4</span>
+      <span class="dim">1920×1598</span></div>
+      <h3>视频播放页</h3>
+      <p>播放器 / 分 P / 相关推荐</p>
+      <a href="svg/P040101_视频播放页.svg" target="_blank"><img src="svg/P040101_视频播放页.svg" alt="视频播放页" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P0402</span><span class="lv">L3</span>
+      <span class="dim">1920×1722</span></div>
+      <h3>图文攻略</h3>
+      <p>分类文章列表 → 文章详情</p>
+      <a href="svg/P0402_图文攻略.svg" target="_blank"><img src="svg/P0402_图文攻略.svg" alt="图文攻略" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P040201</span><span class="lv">L4</span>
+      <span class="dim">1920×2196</span></div>
+      <h3>文章详情</h3>
+      <p>图文攻略 · 红石 · 12 分钟阅读 · 更新于 2024-06-12</p>
+      <a href="svg/P040201_文章详情.svg" target="_blank"><img src="svg/P040201_文章详情.svg" alt="文章详情" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P05</span><span class="lv">L2</span>
+      <span class="dim">1920×1374</span></div>
+      <h3>关于与支持</h3>
+      <p>团队、联系与反馈、更新日志、用户协议与隐私。</p>
+      <a href="svg/P05_关于与支持.svg" target="_blank"><img src="svg/P05_关于与支持.svg" alt="关于与支持" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P0501</span><span class="lv">L3</span>
+      <span class="dim">1920×1748</span></div>
+      <h3>关于我们</h3>
+      <p>MC HUB 是谁做的、为什么做，以及我们坚持的三件事。</p>
+      <a href="svg/P0501_关于我们.svg" target="_blank"><img src="svg/P0501_关于我们.svg" alt="关于我们" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P0502</span><span class="lv">L3</span>
+      <span class="dim">1920×1504</span></div>
+      <h3>联系与反馈</h3>
+      <p>联系方式 / 问题反馈表单 → 常见问题、用户协议</p>
+      <a href="svg/P0502_联系与反馈.svg" target="_blank"><img src="svg/P0502_联系与反馈.svg" alt="联系与反馈" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P0503</span><span class="lv">L3</span>
+      <span class="dim">1920×1872</span></div>
+      <h3>更新日志</h3>
+      <p>版本更新记录 → 首页、关于我们</p>
+      <a href="svg/P0503_更新日志.svg" target="_blank"><img src="svg/P0503_更新日志.svg" alt="更新日志" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">P0504</span><span class="lv">L3</span>
+      <span class="dim">1920×1698</span></div>
+      <h3>用户协议与隐私</h3>
+      <p>用户协议 / 隐私说明 → 联系与反馈</p>
+      <a href="svg/P0504_用户协议与隐私.svg" target="_blank"><img src="svg/P0504_用户协议与隐私.svg" alt="用户协议与隐私" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">G01</span><span class="lv">G</span>
+      <span class="dim">1920×1384</span></div>
+      <h3>登录/注册</h3>
+      <p>登录 / 注册 / 找回密码</p>
+      <a href="svg/G01_登录-注册.svg" target="_blank"><img src="svg/G01_登录-注册.svg" alt="登录/注册" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">G02</span><span class="lv">G</span>
+      <span class="dim">1920×1444</span></div>
+      <h3>搜索结果</h3>
+      <p>页面 / MOD / 整合包 / 帖子 / 视频分组结果</p>
+      <a href="svg/G02_搜索结果.svg" target="_blank"><img src="svg/G02_搜索结果.svg" alt="搜索结果" loading="lazy"></a>
+    </article><article class="card">
+      <div class="meta"><span class="code">G03</span><span class="lv">G</span>
+      <span class="dim">1920×1224</span></div>
+      <h3>404/空状态</h3>
+      <p>错误提示 + 搜索建议 → 首页</p>
+      <a href="svg/G03_404-空状态.svg" target="_blank"><img src="svg/G03_404-空状态.svg" alt="404/空状态" loading="lazy"></a>
+    </article>
+</main></body></html>
