@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MC 应用与社区交流平台 · 网站信息架构图 V1.0</title>
+<style>
+  :root{
+    --bg:#0e1410;
+    --bg-2:#121a14;
+    --panel:#17211a;
+    --panel-2:#1d2a21;
+    --line:#2b3b30;
+    --line-2:#3a5041;
+    --text:#e9f1ea;
+    --muted:#93a89a;
+    --grass:#6ea832;
+    --grass-2:#8ec63f;
+    --amber:#d9a13b;
+    --blue:#4a9edb;
+    --purple:#a07bd8;
+    --pink:#d873a8;
+    --radius:6px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 15% -10%, #1b2a1e 0%, transparent 60%),
+      radial-gradient(900px 500px at 95% 0%, #1a2416 0%, transparent 55%),
+      var(--bg);
+    color:var(--text);
+    font-family:"Microsoft YaHei","Segoe UI",system-ui,-apple-system,sans-serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  code, .mono{font-family:Consolas,"Cascadia Mono",Menlo,monospace;}
+  a{color:inherit;text-decoration:none;}
+
+  /* ---------- 顶栏 ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    background:rgba(14,20,16,.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-in{
+    max-width:1180px;margin:0 auto;padding:0 24px;
+    height:58px;display:flex;align-items:center;gap:18px;
+  }
+  .logo{display:flex;align-items:center;gap:9px;font-weight:800;letter-spacing:.5px;}
+  .logo .cube{
+    width:22px;height:22px;border-radius:4px;
+    background:linear-gradient(145deg,var(--grass-2),#4d7a22);
+    box-shadow:inset 0 0 0 2px rgba(0,0,0,.25);
+    position:relative;
+  }
+  .logo .cube::after{
+    content:"";position:absolute;inset:6px;background:rgba(255,255,255,.35);border-radius:1px;
+  }
+  .logo small{color:var(--muted);font-weight:500;font-size:12px;letter-spacing:0;}
+  .nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap;}
+  .nav a{
+    font-size:13px;color:var(--muted);padding:6px 11px;border-radius:4px;transition:.18s;
+  }
+  .nav a:hover{color:var(--text);background:var(--panel-2);}
+  .nav a.on{color:var(--grass-2);background:rgba(110,168,50,.12);}
+
+  /* ---------- 版心 ---------- */
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px 80px;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;overflow:hidden;
+    border:1px solid var(--line);border-radius:10px;
+    background:linear-gradient(160deg,#1a2a1d 0%,#131d16 55%,#111a13 100%);
+    margin-top:26px;padding:38px 38px 30px;
+  }
+  .hero::before{
+    content:"";position:absolute;right:-60px;top:-70px;width:320px;height:320px;border-radius:50%;
+    background:radial-gradient(circle,rgba(110,168,50,.22),transparent 65%);
+  }
+  .hero::after{
+    content:"";position:absolute;left:0;right:0;bottom:0;height:64px;
+    background-image:linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px),
+                     linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px);
+    background-size:22px 22px;
+    mask-image:linear-gradient(to top,#000,transparent);
+    pointer-events:none;
+  }
+  .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12px;letter-spacing:1.5px;color:var(--grass-2);
+    border:1px solid rgba(110,168,50,.4);background:rgba(110,168,50,.08);
+    padding:4px 10px;border-radius:999px;margin-bottom:16px;
+  }
+  .hero h1{
+    margin:0 0 10px;font-size:34px;line-height:1.3;letter-spacing:-.5px;font-weight:800;
+  }
+  .hero h1 span{color:var(--grass-2);}
+  .hero p.sub{margin:0;color:#b9cbbd;max-width:760px;font-size:14.5px;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;position:relative;z-index:2;}
+  .chip{
+    font-size:12px;color:#c8d9cc;background:var(--panel-2);border:1px solid var(--line);
+    padding:4px 10px;border-radius:4px;
+  }
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px;position:relative;z-index:2;}
+  .kpi{background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;}
+  .kpi b{display:block;font-size:26px;line-height:1.2;color:var(--grass-2);font-family:Consolas,monospace;}
+  .kpi span{font-size:12px;color:var(--muted);}
+
+  /* ---------- 通用区块 ---------- */
+  section{margin-top:52px;scroll-margin-top:76px;}
+  .sec-head{display:flex;align-items:flex-end;gap:14px;margin-bottom:8px;flex-wrap:wrap;}
+  .sec-head h2{margin:0;font-size:21px;letter-spacing:.3px;font-weight:800;}
+  .sec-head .no{
+    font-family:Consolas,monospace;color:var(--grass);font-size:13px;
+    border:1px solid var(--line-2);border-radius:4px;padding:1px 7px;
+  }
+  .sec-head .desc{color:var(--muted);font-size:13px;margin-left:auto;}
+  .hr{height:1px;background:linear-gradient(90deg,var(--line-2),transparent);margin:12px 0 22px;}
+
+  /* ---------- 设计前提 卡片 ---------- */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .card{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px 18px 16px;position:relative;overflow:hidden;
+  }
+  .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--grass);opacity:.85;}
+  .card h4{margin:0 0 8px;font-size:14px;}
+  .card p{margin:0;font-size:13px;color:#a9bcae;}
+  .card ul{margin:6px 0 0;padding-left:16px;font-size:13px;color:#a9bcae;}
+  .card li{margin:3px 0;}
+
+  /* ---------- 全局框架图 ---------- */
+  .frame{
+    border:1px solid var(--line);border-radius:8px;background:var(--bg-2);overflow:hidden;
+  }
+  .frame-row{display:flex;align-items:stretch;border-bottom:1px solid var(--line);}
+  .frame-row:last-child{border-bottom:none;}
+  .frame-label{
+    width:132px;flex:0 0 132px;padding:14px 16px;font-size:12px;color:var(--muted);
+    background:var(--panel-2);border-right:1px solid var(--line);display:flex;align-items:center;
+  }
+  .frame-body{padding:14px 16px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;flex:1;}
+  .pill{
+    font-size:12.5px;padding:5px 11px;border-radius:4px;border:1px solid var(--line-2);
+    background:var(--panel);color:#cfded3;
+  }
+  .pill.g{border-color:rgba(110,168,50,.55);background:rgba(110,168,50,.12);color:var(--grass-2);}
+  .pill.m{border-color:rgba(217,161,59,.45);background:rgba(217,161,59,.1);color:#e8c07a;}
+  .flow-note{font-size:12px;color:var(--muted);margin:10px 2px 0;}
+
+  /* ---------- 架构树 ---------- */
+  .tree-tools{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;align-items:center;}
+  .btn{
+    font-size:12.5px;padding:6px 12px;border-radius:4px;cursor:pointer;
+    background:var(--panel-2);border:1px solid var(--line-2);color:#cfded3;transition:.16s;
+  }
+  .btn:hover{border-color:var(--grass);color:var(--grass-2);}
+  .legend{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;font-size:11.5px;color:var(--muted);align-items:center;}
+  .dot{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:4px;vertical-align:middle;}
+
+  .tree{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px 18px 18px;}
+  details.node{margin:2px 0;border-left:1px dashed transparent;padding-left:0;}
+  details.node > summary{
+    list-style:none;cursor:pointer;display:flex;align-items:center;gap:9px;
+    padding:7px 10px;border-radius:5px;transition:.15s;flex-wrap:wrap;
+  }
+  details.node > summary::-webkit-details-marker{display:none;}
+  details.node > summary::before{
+    content:"▸";color:var(--muted);font-size:11px;width:12px;flex:0 0 12px;transition:.18s;
+  }
+  details.node[open] > summary::before{transform:rotate(90deg);color:var(--grass-2);}
+  details.node > summary:hover{background:var(--panel-2);}
+  details.node.leaf > summary{cursor:default;}
+  details.node.leaf > summary::before{content:"·";color:#4d6754;}
+  details.node.leaf > summary:hover{background:transparent;}
+  .children{margin-left:20px;padding-left:12px;border-left:1px solid var(--line);}
+
+  .lv{
+    font-family:Consolas,monospace;font-size:10.5px;padding:1px 5px;border-radius:3px;
+    border:1px solid var(--line-2);color:var(--muted);flex:0 0 auto;
+  }
+  .lv1{border-color:rgba(110,168,50,.7);color:var(--grass-2);background:rgba(110,168,50,.12);}
+  .lv2{border-color:rgba(217,161,59,.6);color:#e8c07a;background:rgba(217,161,59,.1);}
+  .lv3{border-color:rgba(74,158,219,.6);color:#8cc6ea;background:rgba(74,158,219,.1);}
+  .lv4{border-color:rgba(160,123,216,.6);color:#bda4e6;background:rgba(160,123,216,.1);}
+  .lv5{border-color:rgba(216,115,168,.6);color:#e3a3c5;background:rgba(216,115,168,.1);}
+  .lvg{border-color:rgba(147,168,154,.6);color:#b7c7bc;}
+
+  .nm{font-size:13.5px;font-weight:600;color:#e2ebe4;}
+  .url{font-size:11.5px;color:#7f9587;}
+  .tag{
+    font-size:10.5px;color:#9fb4a5;border:1px solid var(--line);border-radius:3px;
+    padding:0 5px;background:rgba(255,255,255,.02);
+  }
+  .tag.x{color:#e8c07a;border-color:rgba(217,161,59,.35);}
+  .tag.hot{color:#e3a3c5;border-color:rgba(216,115,168,.35);}
+  .cnt{font-size:11px;color:#6f8778;margin-left:auto;}
+
+  /* ---------- 表格 ---------- */
+  .filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+  .filters .btn.on{background:rgba(110,168,50,.16);border-color:var(--grass);color:var(--grass-2);}
+  .table-wrap{border:1px solid var(--line);border-radius:8px;overflow:auto;background:var(--panel);}
+  table{border-collapse:collapse;width:100%;min-width:940px;font-size:12.8px;}
+  thead th{
+    position:sticky;top:0;background:#1a251d;color:#b9cbbd;text-align:left;font-weight:600;
+    padding:11px 12px;border-bottom:1px solid var(--line-2);white-space:nowrap;font-size:12px;
+    letter-spacing:.4px;
+  }
+  tbody td{padding:9px 12px;border-bottom:1px solid #223028;color:#c9d8cd;vertical-align:top;}
+  tbody tr:hover td{background:rgba(110,168,50,.06);}
+  tbody tr.hide{display:none;}
+  tbody td.id{font-family:Consolas,monospace;color:#7f9587;font-size:11.5px;white-space:nowrap;}
+  tbody td.urlcell{font-family:Consolas,monospace;font-size:11.5px;color:#8fb0a0;white-space:nowrap;}
+  tbody td.nmcell{font-weight:600;color:#e2ebe4;white-space:nowrap;}
+  .b{display:inline-block;font-size:10.5px;font-family:Consolas,monospace;padding:0 5px;border-radius:3px;border:1px solid var(--line-2);}
+
+  /* ---------- 用户路径 ---------- */
+  .path{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin-bottom:12px;}
+  .path h4{margin:0 0 12px;font-size:13.5px;display:flex;align-items:center;gap:9px;}
+  .path h4 .badge{
+    font-family:Consolas,monospace;font-size:11px;color:var(--grass-2);
+    border:1px solid rgba(110,168,50,.5);background:rgba(110,168,50,.1);padding:1px 6px;border-radius:3px;
+  }
+  .steps{display:flex;flex-wrap:wrap;align-items:center;gap:6px;}
+  .step{
+    font-size:12.3px;padding:6px 10px;border-radius:4px;background:var(--panel-2);
+    border:1px solid var(--line-2);color:#d3e2d6;white-space:nowrap;
+  }
+  .step.start{border-color:rgba(110,168,50,.7);color:var(--grass-2);background:rgba(110,168,50,.1);}
+  .step.end{border-color:rgba(216,115,168,.55);color:#e3a3c5;background:rgba(216,115,168,.08);}
+  .arrow{color:#5a7563;font-size:12px;}
+
+  /* ---------- 导通规则 ---------- */
+  .rules{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+  .rule{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;}
+  .rule b{display:block;font-size:13px;margin-bottom:5px;color:#e2ebe4;}
+  .rule b i{font-style:normal;color:var(--grass-2);font-family:Consolas,monospace;margin-right:7px;}
+  .rule p{margin:0;font-size:12.6px;color:#a5b8aa;}
+  .matrix{margin-top:16px;}
+
+  footer{
+    margin-top:56px;padding-top:18px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    font-size:12px;color:#6f8778;
+  }
+
+  @media (max-width:900px){
+    .kpis{grid-template-columns:repeat(2,1fr);}
+    .cards,.rules{grid-template-columns:1fr;}
+    .hero{padding:26px 20px;}
+    .hero h1{font-size:26px;}
+    .frame-label{width:96px;flex-basis:96px;font-size:11px;}
+    .legend{margin-left:0;width:100%;}
+  }
+  @media print{
+    body{background:#fff;color:#111;}
+    .topbar,.tree-tools,.filters{display:none;}
+    .hero,.card,.path,.rule,.tree,.table-wrap{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <div class="logo"><span class="cube"></span>MC HUB <small>信息架构 V1.0</small></div>
+    <div class="nav">
+      <a href="#overview" class="on">概览</a>
+      <a href="#frame">全局框架</a>
+      <a href="#tree">架构树</a>
+      <a href="#pages">页面清单</a>
+      <a href="#paths">用户路径</a>
+      <a href="#rules">导通规则</a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="hero" id="overview">
+    <div class="kicker">C1 交互页面设计 · 实训任务一 · 网站信息架构梳理与布局设计</div>
+    <h1>MC 应用与社区交流平台<br><span>网站信息架构图</span></h1>
+    <p class="sub">以「认识 → 获取 → 交流 → 学习」为主线，把 Minecraft 相关内容拆成 5 个一级频道、5 层页面深度，并明确每一层之间的链接导通关系，作为后续页面设计与高保真原型的唯一结构依据。</p>
+    <div class="meta">
+      <span class="chip">主题：Minecraft 应用与社区交流平台</span>
+      <span class="chip">版本：IA V1.0</span>
+      <span class="chip">结构：4 层主干 + 1 层内容详情</span>
+      <span class="chip">适配：PC 优先 / 响应式</span>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><b>5</b><span>一级频道</span></div>
+      <div class="kpi"><b>18</b><span>二级栏目</span></div>
+      <div class="kpi"><b>41</b><span>页面总量</span></div>
+      <div class="kpi"><b>5</b><span>最深层级（首页→帖子）</span></div>
+    </div>
+  </div>
+
+  <!-- 01 设计前提 -->
+  <section id="brief">
+    <div class="sec-head">
+      <span class="no">01</span>
+      <h2>设计前提与范围</h2>
+      <span class="desc">先定边界，再定结构</span>
+    </div>
+    <div class="hr"></div>
+    <div class="cards">
+      <div class="card">
+        <h4>目标用户</h4>
+        <ul>
+          <li>刚接触 MC、需要入门引导的新玩家</li>
+          <li>找启动器 / 整合包 / MOD 的进阶玩家</li>
+          <li>找攻略视频、想联机交流的活跃用户</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>内容范围</h4>
+        <ul>
+          <li>游戏认知：简介、版本、教程、FAQ</li>
+          <li>资源下载：启动器、整合包、MOD、资源包、联机与语音工具</li>
+          <li>社区与内容：论坛、联机、视频攻略、图文攻略</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>结构原则</h4>
+        <ul>
+          <li>层级不超过 5 层，任意页面 3 次点击内可达</li>
+          <li>下载类页面必须出现「版本 / 兼容性」信息</li>
+          <li>详情页均保留面包屑 + 相关推荐 + 返回路径</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 全局框架 -->
+  <section id="frame">
+    <div class="sec-head">
+      <span class="no">02</span>
+      <h2>全局导航框架</h2>
+      <span class="desc">所有页面共用的三段式布局</span>
+    </div>
+    <div class="hr"></div>
+
+    <div class="frame">
+      <div class="frame-row">
+        <div class="frame-label">顶部导航</div>
+        <div class="frame-body">
+          <span class="pill g">Logo / 首页</span>
+          <span class="pill">认识 MC</span>
+          <span class="pill">下载中心</span>
+          <span class="pill">社区交流</span>
+          <span class="pill">攻略视频</span>
+          <span class="pill">关于与支持</span>
+          <span class="pill m">全局搜索</span>
+          <span class="pill m">登录 / 注册</span>
+        </div>
+      </div>
+      <div class="frame-row">
+        <div class="frame-label">面包屑</div>
+        <div class="frame-body">
+          <span class="pill">首页 › 二级频道 › 三级栏目 › 当前页（除首页外全站统一）</span>
+        </div>
+      </div>
+      <div class="frame-row">
+        <div class="frame-label">内容区</div>
+        <div class="frame-body">
+          <span class="pill">频道导语</span>
+          <span class="pill">筛选 / 分类</span>
+          <span class="pill">卡片列表</span>
+          <span class="pill">详情正文</span>
+          <span class="pill">相关推荐（跨频道）</span>
+        </div>
+      </div>
+      <div class="frame-row">
+        <div class="frame-label">页脚</div>
+        <div class="frame-body">
+          <span class="pill">频道导航</span>
+          <span class="pill">下载资源</span>
+          <span class="pill">社区入口</span>
+          <span class="pill">关于 / 联系 / 协议 / 更新日志</span>
+        </div>
+      </div>
+      <div class="frame-row">
+        <div class="frame-label">全局工具页</div>
+        <div class="frame-body">
+          <span class="pill m">登录注册页</span>
+          <span class="pill m">搜索结果页</span>
+          <span class="pill m">404 / 空状态页</span>
+          <span class="pill m">个人中心</span>
+        </div>
+      </div>
+    </div>
+    <p class="flow-note">说明：顶部导航常驻 6 个一级入口，保证任意页面都能横向切换频道；页脚覆盖全部二级栏目，作为兜底导航，避免死链。</p>
+  </section>
+
+  <!-- 03 架构树 -->
+  <section id="tree">
+    <div class="sec-head">
+      <span class="no">03</span>
+      <h2>信息架构树（可展开）</h2>
+      <span class="desc">点击节点前的箭头展开 / 收起</span>
+    </div>
+    <div class="hr"></div>
+
+    <div class="tree-tools">
+      <button class="btn" id="expandAll">全部展开</button>
+      <button class="btn" id="collapseAll">全部收起</button>
+      <div class="legend">
+        <span><i class="dot" style="background:#6ea832"></i>L1 首页</span>
+        <span><i class="dot" style="background:#d9a13b"></i>L2 频道</span>
+        <span><i class="dot" style="background:#4a9edb"></i>L3 栏目</span>
+        <span><i class="dot" style="background:#a07bd8"></i>L4 详情</span>
+        <span><i class="dot" style="background:#d873a8"></i>L5 内容</span>
+        <span><i class="dot" style="background:#93a89a"></i>全局工具</span>
+      </div>
+    </div>
+
+    <div class="tree" id="treeRoot">
+
+      <!-- L1 -->
+      <details class="node" open>
+        <summary>
+          <span class="lv lv1">L1</span>
+          <span class="nm">首页</span>
+          <span class="url mono">index.html</span>
+          <span class="tag">站点入口</span>
+          <span class="cnt">下属 5 个频道</span>
+        </summary>
+        <div class="children">
+
+          <!-- 认识MC -->
+          <details class="node">
+            <summary>
+              <span class="lv lv2">L2</span>
+              <span class="nm">认识 MC</span>
+              <span class="url mono">guide.html</span>
+              <span class="cnt">4 个栏目</span>
+            </summary>
+            <div class="children">
+              <details class="node">
+                <summary>
+                  <span class="lv lv3">L3</span>
+                  <span class="nm">游戏简介</span>
+                  <span class="url mono">guide-intro.html</span>
+                  <span class="tag x">↔ 版本与玩法</span>
+                </summary>
+              </details>
+              <details class="node">
+                <summary>
+                  <span class="lv lv3">L3</span>
+                  <span class="nm">版本与玩法</span>
+                  <span class="url mono">guide-versions.html</span>
+                  <span class="tag x">↔ 启动器下载</span>
+                </summary>
+                <div class="children">
+                  <details class="node leaf">
+                    <summary>
+                      <span class="lv lv4">L4</span>
+                      <span class="nm">版本详情</span>
+                      <span class="url mono">version-detail.html?v=</span>
+                      <span class="tag x">↔ 整合包详情</span>
+                    </summary>
+                  </details>
+                </div>
+              </details>
+              <details class="node">
+                <summary>
+                  <span class="lv lv3">L3</span>
+                  <span class="nm">新手入门教程</span>
+                  <span class="url mono">guide-tutorial.html</span>
+                  <span class="tag hot">新手主路径</span>
+                </summary>
+                <div class="children">
+                  <details class="node leaf">
+                    <summary>
+                      <span class="lv lv4">L4</span>
+                      <span class="nm">教程详情</span>
+                      <span class="url mono">tutorial-detail.html?id=</span>
+                      <span class="tag x">↔ 常见问题</span>
+                    </summary>
+                  </details>
+                </div>
+              </details>
+              <details class="node">
+                <summary>
+                  <span class="lv lv3">L3</span>
+                  <span class="nm">常见问题</span>
+                  <span class="url mono">guide-faq.html</span>
+                </summary>
+                <div class="children">
+                  <details class="node leaf">
+                    <summary>
+                      <span class="lv lv4">L4</span>
+                      <span class="nm">问题详情</span>
+                      <span class="url mono">faq-detail.html?id=</span>
+                      <span class="tag x">↔ 联系与反馈</span>
+                    </summary>
+                  </details>
+                </div>
+              </details>
+            </div>
+          </details>
+
+          <!-- 下载中心 -->
+          <details class="node">
+            <summary>
+              <span class="lv lv2">L2</span>
+              <span class="nm">下载中心</span>
+              <span class="url mono">download.html</span>
+              <span class="tag hot">核心转化页</span>
+              <span class="cnt">5 个栏目</span>
+            </summary>
+            <div class="children">
+              <details class="node">
+                <summary>
+                  <span class="lv lv3">L3</span>
+                  <span class="nm">启动器下载</span>
+                  <span class="url mono">launcher.html</span>
+                  <span class="tag">官方 / HMCL / PCL2 对比</span>
+                </summary>
+                <div class="children">
+                  <details class="node leaf">
+                    <summary>
+                      <span class="lv lv4">L4</span>
+                      <span class="nm">启动器详情</span>
+                      <span class="url mono">launcher-detail.html?name=</span>
+                      <span class="tag x">↔ 版本详情</span>
+                    </summary>
+                  </details>
+                </div>
+              </details>
+              <details class="node">
+                <summary>
+                  <span class="lv lv3">L3</span>
+                  <span class="nm">整合包获取</span>
+                  <span class="url mono">modpack.html</span>
+                  <span class="tag">分类 + 热度 + 版本筛选</span>
+                </summary>
+                <div class="children">
+                  <details class="node leaf">
+                    <summary>
+                      <span class="lv lv4">L4</span>
+                      <span class="nm">整合包详情</span>
+                      <span class="url mono">modpack-detail.html?id=</span>
+                      <span class="tag x">↔ 启动器 / MOD / 视频</span>
+                    </summary>
+                  </details>
+                </div>
+              </details>
+              <details class="node">
+                <summary>
+                  <span class="lv lv3">L3</span>
+                  <span class="nm">MOD 下载</span>
+                  <span class="url mono">mod.html</span>
+                  <span class="tag">前置依赖提示</span>
+                </summary>
+                <div class="children">
+                  <details class="node leaf">
+                    <summary>
+                      <span class="lv lv4">L4</span>
+                      <span class="nm">MOD 详情</span>
+                      <span class="url mono">mod-detail.html?id=</span>
+                      <span class="tag x">↔ 前置 MOD / 整合包</span>
+                    </summary>
+                  </details>
+                </div>
+              </details>
+              <details class="node">
+                <summary>
+                  <span class="lv lv3">L3</span>
+                  <span class="nm">资源包与光影</span>
+                  <span class="url mono">resource.html</span>
+                </summary>
+                <div class="children">
+                  <details class="node leaf">
+                    <summary>
+                      <span class="lv lv4">L4</span>
+                      <span class="nm">资源详情</span>
+                      <span class="url mono">resource-detail.html?id=</span>
+                      <span class="tag x">↔ 整合包详情</span>
+                    </summary>
+                  </details>
+                </div>
+              </details>
+              <details class="node">
+                <summary>
+                  <span class="lv lv3">L3</span>
+                  <span class="nm">联机与语音工具下载</span>
+                  <span class="url mono">net-tools.html</span>
+                  <span class="tag">联机工具 / 语音工具 分组</span>
+                </summary>
+                <div class="children">
+                  <details class="node leaf">
+                    <summary>
+                      <span class="lv lv4">L4</span>
+                      <span class="nm">工具详情</span>
+                      <span class="url mono">tool-detail.html?id=</span>
+                      <span class="tag x">↔ 服务器详情 / 整合包</span>
+                    </summary>
+                  </details>
+                </div>
+              </details>
+            </div>
+          </details>
+
+          <!-- 社区交流 -->
+          <details class="node">
+            <summary>
+              <span class="lv lv2">L2</span>
+              <span class="nm">社区交流</span>
+              <span class="url mono">community.html</span>
+              <span class="cnt">3 个栏目</span>
+            </summary>
+            <div class="children">
+              <details class="node">
+                <summary>
+                  <span class="lv lv3">L3</span>
+                  <span class="nm">论坛板块</span>
+                  <span class="url mono">forum.html</span>
+                  <span class="tag">分区 + 最新主题</span>
+                </summary>
+                <div class="children">
+                  <details class="node">
+                    <summary>
+                      <span class="lv lv4">L4</span>
+                      <span class="nm">板块帖子列表</span>
+                      <span class="url mono">board.html?id=</span>
+                      <span class="tag">置顶 / 筛选 / 发帖</span>
+                    </summary>
+                    <div class="children">
+                      <details class="node leaf">
+                        <summary>
+                          <span class="lv lv5">L5</span>
+                          <span class="nm">帖子详情</span>
+                          <span class="url mono">post.html?id=</span>
+                          <span class="tag x">↔ 相关资源 / 个人中心</span>
+                        </summary>
+                      </details>
+                    </div>
+                  </details>
+                </div>
+              </details>
+              <details class="node">
+                <summary>
+                  <span class="lv lv3">L3</span>
+                  <span class="nm">服务器与联机</span>
+                  <span class="url mono">servers.html</span>
+                  <span class="tag">服务器列表 / 筛选</span>
+                </summary>
+                <div class="children">
+                  <details class="node leaf">
+                    <summary>
+                      <span class="lv lv4">L4</span>
+                      <span class="nm">服务器详情</span>
+                      <span class="url mono">server-detail.html?id=</span>
+                      <span class="tag x">↔ 论坛板块</span>
+                    </summary>
+                  </details>
+                </div>
+              </details>
+              <details class="node">
+                <summary>
+                  <span class="lv lv3">L3</span>
+                  <span class="nm">个人中心</span>
+                  <span class="url mono">profile.html</span>
+                  <span class="tag">需登录</span>
+                </summary>
+                <div class="children">
+                  <details class="node leaf">
+                    <summary>
+                      <span class="lv lv4">L4</span>
+                      <span class="nm">我的内容</span>
+                      <span class="url mono">profile-content.html</span>
+                      <span class="tag">我的帖子 / 收藏 / 设置</span>
+                    </summary>
+                  </details>
+                </div>
+              </details>
+            </div>
+          </details>
+
+          <!-- 攻略视频 -->
+          <details class="node">
+            <summary>
+              <span class="lv lv2">L2</span>
+              <span class="nm">攻略视频</span>
+              <span class="url mono">video.html</span>
+              <span class="cnt">2 个栏目</span>
+            </summary>
+            <div class="children">
+              <details class="node">
+                <summary>
+                  <span class="lv lv3">L3</span>
+                  <span class="nm">视频攻略</span>
+                  <span class="url mono">video-guide.html</span>
+                  <span class="tag">合集 / 难度分区</span>
+                </summary>
+                <div class="children">
+                  <details class="node leaf">
+                    <summary>
+                      <span class="lv lv4">L4</span>
+                      <span class="nm">视频播放页</span>
+                      <span class="url mono">watch.html?id=</span>
+                      <span class="tag x">↔ 图文攻略 / 整合包</span>
+                    </summary>
+                  </details>
+                </div>
+              </details>
+              <details class="node">
+                <summary>
+                  <span class="lv lv3">L3</span>
+                  <span class="nm">图文攻略</span>
+                  <span class="url mono">article.html</span>
+                  <span class="tag">分类文章列表</span>
+                </summary>
+                <div class="children">
+                  <details class="node leaf">
+                    <summary>
+                      <span class="lv lv4">L4</span>
+                      <span class="nm">文章详情</span>
+                      <span class="url mono">article-detail.html?id=</span>
+                      <span class="tag x">↔ 视频攻略 / 教程</span>
+                    </summary>
+                  </details>
+                </div>
+              </details>
+            </div>
+          </details>
+
+          <!-- 关于与支持 -->
+          <details class="node">
+            <summary>
+              <span class="lv lv2">L2</span>
+              <span class="nm">关于与支持</span>
+              <span class="url mono">about.html</span>
+              <span class="cnt">4 个栏目</span>
+            </summary>
+            <div class="children">
+              <details class="node leaf"><summary><span class="lv lv3">L3</span><span class="nm">关于我们</span><span class="url mono">about-us.html</span></summary></details>
+              <details class="node leaf"><summary><span class="lv lv3">L3</span><span class="nm">联系与反馈</span><span class="url mono">contact.html</span></summary></details>
+              <details class="node leaf"><summary><span class="lv lv3">L3</span><span class="nm">更新日志</span><span class="url mono">changelog.html</span></summary></details>
+              <details class="node leaf"><summary><span class="lv lv3">L3</span><span class="nm">用户协议与隐私</span><span class="url mono">legal.html</span></summary></details>
+            </div>
+          </details>
+
+          <!-- 全局工具 -->
+          <details class="node">
+            <summary>
+              <span class="lv lvg">全局</span>
+              <span class="nm">全局工具页</span>
+              <span class="url mono">跨频道可达</span>
+              <span class="cnt">3 个页面</span>
+            </summary>
+            <div class="children">
+              <details class="node leaf"><summary><span class="lv lvg">全局</span><span class="nm">登录 / 注册</span><span class="url mono">login.html</span><span class="tag x">→ 个人中心</span></summary></details>
+              <details class="node leaf"><summary><span class="lv lvg">全局</span><span class="nm">搜索结果</span><span class="url mono">search.html?q=</span><span class="tag x">→ 各类详情页</span></summary></details>
+              <details class="node leaf"><summary><span class="lv lvg">全局</span><span class="nm">404 / 空状态</span><span class="url mono">404.html</span><span class="tag x">→ 首页</span></summary></details>
+            </div>
+          </details>
+
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- 04 页面清单 -->
+  <section id="pages">
+    <div class="sec-head">
+      <span class="no">04</span>
+      <h2>页面清单与链接出口</h2>
+      <span class="desc">共 41 个页面，标注层级、上级与主要出口</span>
+    </div>
+    <div class="hr"></div>
+
+    <div class="filters">
+      <button class="btn on" data-f="all">全部</button>
+      <button class="btn" data-f="1">L1</button>
+      <button class="btn" data-f="2">L2</button>
+      <button class="btn" data-f="3">L3</button>
+      <button class="btn" data-f="4">L4</button>
+      <button class="btn" data-f="5">L5</button>
+      <button class="btn" data-f="g">全局</button>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>编号</th><th>页面名称</th><th>层级</th><th>上级页面</th><th>路径 / URL</th><th>核心内容</th><th>主要出口链接</th>
+          </tr>
+        </thead>
+        <tbody id="pageBody">
+          <tr data-l="1"><td class="id">P00</td><td class="nmcell">首页</td><td><span class="b lv1">L1</span></td><td>—</td><td class="urlcell">index.html</td><td>品牌区 / 六入口 / 热门资源轮播</td><td>5 个频道页、搜索、登录</td></tr>
+
+          <tr data-l="2"><td class="id">P01</td><td class="nmcell">认识 MC</td><td><span class="b lv2">L2</span></td><td>首页</td><td class="urlcell">guide.html</td><td>频道导语 + 四大栏目卡片</td><td>简介 / 版本 / 教程 / FAQ</td></tr>
+          <tr data-l="3"><td class="id">P0101</td><td class="nmcell">游戏简介</td><td><span class="b lv3">L3</span></td><td>认识 MC</td><td class="urlcell">guide-intro.html</td><td>是什么 / 玩法概览 / 图集</td><td>版本与玩法、新手教程</td></tr>
+          <tr data-l="3"><td class="id">P0102</td><td class="nmcell">版本与玩法</td><td><span class="b lv3">L3</span></td><td>认识 MC</td><td class="urlcell">guide-versions.html</td><td>Java / 基岩 / 快照版本对照</td><td>版本详情、启动器下载</td></tr>
+          <tr data-l="4"><td class="id">P010201</td><td class="nmcell">版本详情</td><td><span class="b lv4">L4</span></td><td>版本与玩法</td><td class="urlcell">version-detail.html?v=</td><td>版本特性 / 更新内容 / 安装说明</td><td>启动器下载、整合包详情</td></tr>
+          <tr data-l="3"><td class="id">P0103</td><td class="nmcell">新手入门教程</td><td><span class="b lv3">L3</span></td><td>认识 MC</td><td class="urlcell">guide-tutorial.html</td><td>教程目录 / 难度分级</td><td>教程详情</td></tr>
+          <tr data-l="4"><td class="id">P010301</td><td class="nmcell">教程详情</td><td><span class="b lv4">L4</span></td><td>新手入门教程</td><td class="urlcell">tutorial-detail.html?id=</td><td>图文步骤 / 所需版本</td><td>版本详情、常见问题</td></tr>
+          <tr data-l="3"><td class="id">P0104</td><td class="nmcell">常见问题</td><td><span class="b lv3">L3</span></td><td>认识 MC</td><td class="urlcell">guide-faq.html</td><td>分类 FAQ / 关键词检索</td><td>问题详情、联系与反馈</td></tr>
+          <tr data-l="4"><td class="id">P010401</td><td class="nmcell">问题详情</td><td><span class="b lv4">L4</span></td><td>常见问题</td><td class="urlcell">faq-detail.html?id=</td><td>解答 / 相关教程 / 仍未解决</td><td>教程详情、联系与反馈</td></tr>
+
+          <tr data-l="2"><td class="id">P02</td><td class="nmcell">下载中心</td><td><span class="b lv2">L2</span></td><td>首页</td><td class="urlcell">download.html</td><td>五类资源入口 + 推荐榜</td><td>启动器 / 整合包 / MOD / 资源包 / 联机与语音工具</td></tr>
+          <tr data-l="3"><td class="id">P0201</td><td class="nmcell">启动器下载</td><td><span class="b lv3">L3</span></td><td>下载中心</td><td class="urlcell">launcher.html</td><td>官方 / HMCL / PCL2 横向对比</td><td>启动器详情</td></tr>
+          <tr data-l="4"><td class="id">P020101</td><td class="nmcell">启动器详情</td><td><span class="b lv4">L4</span></td><td>启动器下载</td><td class="urlcell">launcher-detail.html?name=</td><td>支持平台 / 配置要求 / 下载</td><td>版本详情、整合包获取</td></tr>
+          <tr data-l="3"><td class="id">P0202</td><td class="nmcell">整合包获取</td><td><span class="b lv3">L3</span></td><td>下载中心</td><td class="urlcell">modpack.html</td><td>分类 / 热度 / 版本筛选</td><td>整合包详情</td></tr>
+          <tr data-l="4"><td class="id">P020201</td><td class="nmcell">整合包详情</td><td><span class="b lv4">L4</span></td><td>整合包获取</td><td class="urlcell">modpack-detail.html?id=</td><td>简介 / MOD 清单 / 安装步骤</td><td>启动器下载、MOD 详情、视频攻略</td></tr>
+          <tr data-l="3"><td class="id">P0203</td><td class="nmcell">MOD 下载</td><td><span class="b lv3">L3</span></td><td>下载中心</td><td class="urlcell">mod.html</td><td>分类 / 版本筛选 / 前置提示</td><td>MOD 详情</td></tr>
+          <tr data-l="4"><td class="id">P020301</td><td class="nmcell">MOD 详情</td><td><span class="b lv4">L4</span></td><td>MOD 下载</td><td class="urlcell">mod-detail.html?id=</td><td>说明 / 前置 MOD / 兼容版本</td><td>MOD 下载、整合包详情</td></tr>
+          <tr data-l="3"><td class="id">P0204</td><td class="nmcell">资源包与光影</td><td><span class="b lv3">L3</span></td><td>下载中心</td><td class="urlcell">resource.html</td><td>资源包 / 光影分区</td><td>资源详情</td></tr>
+          <tr data-l="4"><td class="id">P020401</td><td class="nmcell">资源详情</td><td><span class="b lv4">L4</span></td><td>资源包与光影</td><td class="urlcell">resource-detail.html?id=</td><td>预览图 / 配置要求 / 下载</td><td>整合包详情</td></tr>
+          <tr data-l="3"><td class="id">P0205</td><td class="nmcell">联机与语音工具下载</td><td><span class="b lv3">L3</span></td><td>下载中心</td><td class="urlcell">net-tools.html</td><td>联机工具 / 语音工具两个分组 + 平台与人数对比</td><td>工具详情、服务器与联机</td></tr>
+          <tr data-l="4"><td class="id">P020501</td><td class="nmcell">工具详情</td><td><span class="b lv4">L4</span></td><td>联机与语音工具下载</td><td class="urlcell">tool-detail.html?id=</td><td>功能说明 / 支持平台 / 房间码与语音频道设置 / 下载</td><td>服务器详情、整合包详情</td></tr>
+
+          <tr data-l="2"><td class="id">P03</td><td class="nmcell">社区交流</td><td><span class="b lv2">L2</span></td><td>首页</td><td class="urlcell">community.html</td><td>热门帖 / 公告 / 在线人数</td><td>论坛板块、服务器与联机、个人中心</td></tr>
+          <tr data-l="3"><td class="id">P0301</td><td class="nmcell">论坛板块</td><td><span class="b lv3">L3</span></td><td>社区交流</td><td class="urlcell">forum.html</td><td>分区列表 / 最新主题</td><td>板块帖子列表</td></tr>
+          <tr data-l="4"><td class="id">P030101</td><td class="nmcell">板块帖子列表</td><td><span class="b lv4">L4</span></td><td>论坛板块</td><td class="urlcell">board.html?id=</td><td>置顶 / 排序 / 发帖入口</td><td>帖子详情</td></tr>
+          <tr data-l="5"><td class="id">P03010101</td><td class="nmcell">帖子详情</td><td><span class="b lv5">L5</span></td><td>板块帖子列表</td><td class="urlcell">post.html?id=</td><td>楼层 / 图文 / 点赞回复</td><td>个人中心、相关资源详情</td></tr>
+          <tr data-l="3"><td class="id">P0302</td><td class="nmcell">服务器与联机</td><td><span class="b lv3">L3</span></td><td>社区交流</td><td class="urlcell">servers.html</td><td>服务器列表 / 版本筛选</td><td>服务器详情</td></tr>
+          <tr data-l="4"><td class="id">P030201</td><td class="nmcell">服务器详情</td><td><span class="b lv4">L4</span></td><td>服务器与联机</td><td class="urlcell">server-detail.html?id=</td><td>规则 / 版本 / 加入方式</td><td>论坛板块、启动器下载</td></tr>
+          <tr data-l="3"><td class="id">P0303</td><td class="nmcell">个人中心</td><td><span class="b lv3">L3</span></td><td>社区交流</td><td class="urlcell">profile.html</td><td>资料 / 我的帖子 / 收藏入口</td><td>我的内容、帖子详情</td></tr>
+          <tr data-l="4"><td class="id">P030301</td><td class="nmcell">我的内容</td><td><span class="b lv4">L4</span></td><td>个人中心</td><td class="urlcell">profile-content.html</td><td>发帖 / 收藏 / 消息 / 设置</td><td>帖子详情、首页</td></tr>
+
+          <tr data-l="2"><td class="id">P04</td><td class="nmcell">攻略视频</td><td><span class="b lv2">L2</span></td><td>首页</td><td class="urlcell">video.html</td><td>视频 / 图文双入口 + 合集推荐</td><td>视频攻略、图文攻略</td></tr>
+          <tr data-l="3"><td class="id">P0401</td><td class="nmcell">视频攻略</td><td><span class="b lv3">L3</span></td><td>攻略视频</td><td class="urlcell">video-guide.html</td><td>合集 / UP 主 / 难度分区</td><td>视频播放页</td></tr>
+          <tr data-l="4"><td class="id">P040101</td><td class="nmcell">视频播放页</td><td><span class="b lv4">L4</span></td><td>视频攻略</td><td class="urlcell">watch.html?id=</td><td>播放器 / 分 P / 相关推荐</td><td>图文攻略、整合包详情</td></tr>
+          <tr data-l="3"><td class="id">P0402</td><td class="nmcell">图文攻略</td><td><span class="b lv3">L3</span></td><td>攻略视频</td><td class="urlcell">article.html</td><td>分类文章列表</td><td>文章详情</td></tr>
+          <tr data-l="4"><td class="id">P040201</td><td class="nmcell">文章详情</td><td><span class="b lv4">L4</span></td><td>图文攻略</td><td class="urlcell">article-detail.html?id=</td><td>正文 / 目录 / 相关阅读</td><td>视频攻略、教程详情</td></tr>
+
+          <tr data-l="2"><td class="id">P05</td><td class="nmcell">关于与支持</td><td><span class="b lv2">L2</span></td><td>首页</td><td class="urlcell">about.html</td><td>团队 / 联系 / 协议入口</td><td>4 个子栏目</td></tr>
+          <tr data-l="3"><td class="id">P0501</td><td class="nmcell">关于我们</td><td><span class="b lv3">L3</span></td><td>关于与支持</td><td class="urlcell">about-us.html</td><td>平台介绍 / 团队</td><td>联系与反馈、更新日志</td></tr>
+          <tr data-l="3"><td class="id">P0502</td><td class="nmcell">联系与反馈</td><td><span class="b lv3">L3</span></td><td>关于与支持</td><td class="urlcell">contact.html</td><td>联系方式 / 问题反馈表单</td><td>常见问题、用户协议</td></tr>
+          <tr data-l="3"><td class="id">P0503</td><td class="nmcell">更新日志</td><td><span class="b lv3">L3</span></td><td>关于与支持</td><td class="urlcell">changelog.html</td><td>版本更新记录</td><td>首页、关于我们</td></tr>
+          <tr data-l="3"><td class="id">P0504</td><td class="nmcell">用户协议与隐私</td><td><span class="b lv3">L3</span></td><td>关于与支持</td><td class="urlcell">legal.html</td><td>用户协议 / 隐私说明</td><td>联系与反馈</td></tr>
+
+          <tr data-l="g"><td class="id">G01</td><td class="nmcell">登录 / 注册</td><td><span class="b lvg">全局</span></td><td>顶部导航</td><td class="urlcell">login.html</td><td>登录 / 注册 / 找回密码</td><td>个人中心、返回来源页</td></tr>
+          <tr data-l="g"><td class="id">G02</td><td class="nmcell">搜索结果</td><td><span class="b lvg">全局</span></td><td>顶部搜索框</td><td class="urlcell">search.html?q=</td><td>页面 / MOD / 整合包 / 帖子 / 视频分组结果</td><td>各类详情页</td></tr>
+          <tr data-l="g"><td class="id">G03</td><td class="nmcell">404 / 空状态</td><td><span class="b lvg">全局</span></td><td>异常状态</td><td class="urlcell">404.html</td><td>错误提示 + 搜索建议</td><td>首页、搜索</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="flow-note">合计 41 个页面：L1 ×1、L2 ×5、L3 ×18、L4 ×13、L5 ×1、全局工具 ×3。</p>
+  </section>
+
+  <!-- 05 用户路径 -->
+  <section id="paths">
+    <div class="sec-head">
+      <span class="no">05</span>
+      <h2>关键用户路径</h2>
+      <span class="desc">用于验证「链接导通」是否成立</span>
+    </div>
+    <div class="hr"></div>
+
+    <div class="path">
+      <h4><span class="badge">PATH A</span>新手入门：从认识游戏到成功启动</h4>
+      <div class="steps">
+        <span class="step start">首页</span><span class="arrow">→</span>
+        <span class="step">认识 MC</span><span class="arrow">→</span>
+        <span class="step">游戏简介</span><span class="arrow">→</span>
+        <span class="step">版本与玩法</span><span class="arrow">→</span>
+        <span class="step">新手入门教程</span><span class="arrow">→</span>
+        <span class="step">教程详情</span><span class="arrow">→</span>
+        <span class="step">启动器下载</span><span class="arrow">→</span>
+        <span class="step">启动器详情</span><span class="arrow">→</span>
+        <span class="step end">开始游戏</span>
+      </div>
+    </div>
+
+    <div class="path">
+      <h4><span class="badge">PATH B</span>资源获取：MOD 与整合包之间的依赖跳转</h4>
+      <div class="steps">
+        <span class="step start">首页</span><span class="arrow">→</span>
+        <span class="step">下载中心</span><span class="arrow">→</span>
+        <span class="step">MOD 下载</span><span class="arrow">→</span>
+        <span class="step">MOD 详情</span><span class="arrow">→</span>
+        <span class="step">前置 MOD 详情</span><span class="arrow">→</span>
+        <span class="step">整合包获取</span><span class="arrow">→</span>
+        <span class="step">整合包详情</span><span class="arrow">→</span>
+        <span class="step end">启动器下载</span>
+      </div>
+    </div>
+
+    <div class="path">
+      <h4><span class="badge">PATH C</span>社区互动：从浏览到发布（含 5 层深度验证）</h4>
+      <div class="steps">
+        <span class="step start">首页</span><span class="arrow">→</span>
+        <span class="step">社区交流</span><span class="arrow">→</span>
+        <span class="step">论坛板块</span><span class="arrow">→</span>
+        <span class="step">板块帖子列表</span><span class="arrow">→</span>
+        <span class="step">帖子详情</span><span class="arrow">→</span>
+        <span class="step">登录 / 注册</span><span class="arrow">→</span>
+        <span class="step end">个人中心</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 导通规则 -->
+  <section id="rules">
+    <div class="sec-head">
+      <span class="no">06</span>
+      <h2>链接导通规则</h2>
+      <span class="desc">页面之间的连接方式与兜底策略</span>
+    </div>
+    <div class="hr"></div>
+
+    <div class="rules">
+      <div class="rule">
+        <b><i>R1</i>全局导航常驻</b>
+        <p>顶部 6 个一级频道在任意页面可见，任意频道间 1 次点击切换；Logo 恒定返回首页。</p>
+      </div>
+      <div class="rule">
+        <b><i>R2</i>面包屑回溯</b>
+        <p>L3 及以下页面顶部展示完整路径（首页 › 频道 › 栏目 › 当前页），每一级均可点击返回。</p>
+      </div>
+      <div class="rule">
+        <b><i>R3</i>列表 → 详情单向下钻</b>
+        <p>所有列表页的卡片统一跳转到对应详情页，详情页通过面包屑与原列表页保持上下文一致。</p>
+      </div>
+      <div class="rule">
+        <b><i>R4</i>跨频道相关推荐</b>
+        <p>详情页底部固定「相关推荐」区块，用于打通下载、攻略、社区三个孤岛，例如整合包详情推荐配套视频与 MOD。</p>
+      </div>
+      <div class="rule">
+        <b><i>R5</i>下载链路强关联</b>
+        <p>整合包详情必须提供「启动器下载」与「MOD 详情」出口；MOD 详情必须列出前置依赖并可继续跳转。</p>
+      </div>
+      <div class="rule">
+        <b><i>R6</i>页脚兜底 + 全局搜索</b>
+        <p>页脚四列覆盖全部二级栏目；搜索覆盖页面、MOD、整合包、帖子、视频五类对象，结果可直达详情页。</p>
+      </div>
+    </div>
+
+    <div class="table-wrap matrix">
+      <table>
+        <thead>
+          <tr><th>页面</th><th>跨层 / 跨频道出口</th><th>目的</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="nmcell">首页</td><td>5 个频道页 + 搜索 + 登录</td><td>分流，让三类用户各自进入主路径</td></tr>
+          <tr><td class="nmcell">版本详情</td><td>启动器下载、整合包详情</td><td>看完版本信息即可进入下载环节</td></tr>
+          <tr><td class="nmcell">整合包详情</td><td>启动器下载、MOD 详情、视频攻略</td><td>完成「看 → 拿 → 装」闭环</td></tr>
+          <tr><td class="nmcell">MOD 详情</td><td>MOD 下载、整合包详情</td><td>解决前置依赖与兼容问题</td></tr>
+          <tr><td class="nmcell">联机与语音工具下载</td><td>工具详情、服务器与联机、整合包详情</td><td>联机失败时从社区服务器页回流到工具下载</td></tr>
+          <tr><td class="nmcell">视频播放页</td><td>图文攻略、整合包详情</td><td>视频 → 资源 → 下载的转化</td></tr>
+          <tr><td class="nmcell">帖子详情</td><td>个人中心、相关资源详情</td><td>社区内容反哺下载与教程</td></tr>
+          <tr><td class="nmcell">服务器详情</td><td>论坛板块、启动器下载、联机与语音工具下载</td><td>加入服务器前先备好客户端与语音工具</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <span>MC 应用与社区交流平台 · 网站信息架构 V1.0</span>
+    <span>C1 交互页面设计 · 实训任务一：信息架构梳理与布局设计</span>
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('.topbar a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      document.querySelectorAll('.topbar a').forEach(function (x) { x.classList.remove('on'); });
+      a.classList.add('on');
+    });
+  });
+
+  document.getElementById('expandAll').addEventListener('click', function () {
+    document.querySelectorAll('#treeRoot details').forEach(function (d) { d.open = true; });
+  });
+  document.getElementById('collapseAll').addEventListener('click', function () {
+    document.querySelectorAll('#treeRoot details').forEach(function (d, i) { d.open = i === 0; });
+  });
+
+  var rows = Array.prototype.slice.call(document.querySelectorAll('#pageBody tr'));
+  document.querySelectorAll('.filters .btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.filters .btn').forEach(function (b) { b.classList.remove('on'); });
+      btn.classList.add('on');
+      var f = btn.getAttribute('data-f');
+      rows.forEach(function (tr) {
+        tr.classList.toggle('hide', !(f === 'all' || tr.getAttribute('data-l') === f));
+      });
+    });
+  });
+</script>
+</body>
+</html>
